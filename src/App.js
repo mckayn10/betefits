@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Routes from './routes';
+import {Route} from 'react-router-dom';
+import Nav from './components/Nav/Nav';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        app
+      <div className="App-container">
+        <Route component={Nav} />
+        <Routes />
+
       </div>
     );
   }
