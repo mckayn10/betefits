@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './nav.css';
+import {connect} from 'react-redux';
 
 
 function Nav (props){
@@ -13,8 +14,8 @@ function Nav (props){
         <div className="nav-container">
             <div className="menu-container">
                 <div className="user-info">
-                    <div>PICTURE</div>
-                    <div>USERNAME</div>
+                    <div>{props.username}</div>
+                    <div>{props.id}</div>
                 </div>
                 <Link to='/dashboard'>Dashboard</Link>
                 <Link to='/my-offers'>My Offers</Link>
@@ -29,4 +30,11 @@ function Nav (props){
     }
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+    return {
+        username: state.username,
+        id: state.id
+    }
+}
+
+export default connect(mapStateToProps)(Nav);
