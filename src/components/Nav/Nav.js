@@ -14,8 +14,8 @@ function Nav (props){
         <div className="nav-container">
             <div className="menu-container">
                 <div className="user-info">
-                    <div>{props.username}</div>
-                    <div>{props.id}</div>
+                    <div>Username: {props.username}</div>
+                    <div>User ID: {props.id}</div>
                 </div>
                 <Link to='/dashboard'>Dashboard</Link>
                 <Link to='/my-offers'>My Offers</Link>

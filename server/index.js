@@ -28,6 +28,7 @@ app.use(session({
 
 //GET ENDPOINTS
 app.get('/logout', (req, res) => controller.logout(req, res))
+app.get('/current-bets/:id', (req, res) => controller.currentBets(req, res))
 
 //POST ENDPOINTS
 app.post('/login', (req, res) => controller.login(req, res));

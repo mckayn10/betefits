@@ -24,8 +24,14 @@ class Login extends Component{
     handleLogin = () => {
         axios.post('http://localhost:8080/login', this.state)
             .then(response => {
-                console.log(response.data.username)
-                
+                this.props.user(response.data.username, response.data.id)
+                this.props.history.push(`/dashboard/${response.data.username}`)
+            })
+    }
+
+    handleRegister = () => {
+        axios.post('http://localhost:8080/register', this.state)
+            .then(response => {
                 this.props.user(response.data.username, response.data.id)
                 this.props.history.push(`/dashboard/${response.data.username}`)
             })
@@ -44,7 +50,7 @@ class Login extends Component{
                     <input name="usernameRegister" placeholder="username" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input name="passwordRegister" placeholder="password" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input name="email" placeholder="email address" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <button>Register</button>
+                    <button onClick={this.handleRegister} >Register</button>
                 </div>
                 <div>
                     
