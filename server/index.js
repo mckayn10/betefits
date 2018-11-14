@@ -27,12 +27,13 @@ app.use(session({
 
 
 //GET ENDPOINTS
-app.get('/logout', (req, res) => controller.logout(req, res))
-app.get('/current-bets/:id', (req, res) => controller.currentBets(req, res))
+app.get('/logout', controller.logout)
+app.get('/current-bets/:id', controller.currentBets)
+app.get('/user-info', controller.userInfo);
 
 //POST ENDPOINTS
-app.post('/login', (req, res) => controller.login(req, res));
-app.post('/register', (req, res) => controller.register(req, res));
+app.post('/login', controller.login);
+app.post('/register', controller.register);
 
 app.listen(8080, () => {
     console.log('Server is listening on port 8080')

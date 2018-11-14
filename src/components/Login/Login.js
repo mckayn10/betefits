@@ -22,7 +22,7 @@ class Login extends Component{
     }
 
     handleLogin = () => {
-        axios.post('http://localhost:8080/login', this.state)
+        axios.post('/login', this.state)
             .then(response => {
                 this.props.user(response.data.username, response.data.id)
                 this.props.history.push(`/dashboard/${response.data.username}`)
@@ -30,7 +30,7 @@ class Login extends Component{
     }
 
     handleRegister = () => {
-        axios.post('http://localhost:8080/register', this.state)
+        axios.post('/register', this.state)
             .then(response => {
                 this.props.user(response.data.username, response.data.id)
                 this.props.history.push(`/dashboard/${response.data.username}`)

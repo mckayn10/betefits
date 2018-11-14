@@ -10,6 +10,7 @@ function login (req, res){
                 return res.send(err)
             }
             if(isCorrectPassword){
+                console.log(user)
                 req.session.user = user
                 res.status(200).send(user)
             } 
@@ -31,7 +32,7 @@ function register (req, res){
                 res.status(200).send(user)
             })
             .catch(err => {
-                console.log("error", err)
+                // console.log("error", err)
             })
     })
 }
@@ -46,14 +47,21 @@ function currentBets (req, res){
 
     db.current_bets([req.params.id])
         .then(bets => {
-            console.log(req)
+            // console.log(req)
             res.status(200).send(bets)
         })
+}
+
+function userInfo(req, res){
+    console.log(req.session)
+    res.send(req.session.user)
+
 }
 
 module.exports = {
     login,
     register,
     logout,
-    currentBets
+    currentBets,
+    userInfo
 }

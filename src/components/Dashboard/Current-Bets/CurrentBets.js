@@ -9,7 +9,7 @@ class CurrentBets extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`http://localhost:8080/current-bets/${this.props.id}`)
+        axios.get(`/current-bets/${this.props.id}`)
             .then(response => {
                 this.setState({
                     currentBetsList: response.data
@@ -21,7 +21,7 @@ class CurrentBets extends Component {
         
         const currentBetsList = this.state.currentBetsList.map((bet, i) => {
             return (
-                <div key = {i}>
+                <div key = {i} className="bet-card" >
                     <div>The Bet: {bet.bet_title} </div>
                     <div>Details: {bet.bet_details} </div>
                     <div>Amount: {bet.amount} </div>
