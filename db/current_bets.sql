@@ -1,2 +1,2 @@
 SELECT * FROM Bets 
-WHERE creator_id = $1
+WHERE creator_id = $1 AND offer = false;

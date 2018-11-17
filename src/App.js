@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import Routes from './routes';
-import {Route} from 'react-router-dom';
-import Nav from './components/Nav/Nav';
+import Profile from './components/Profile/Profile';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App-container">
-        <Route component={Nav} />
+
+        <Profile />
         <Routes />
 
       </div>

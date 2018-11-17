@@ -1,2 +1,2 @@
-SELECT * from Users
-WHERE username = $1;
+SELECT * FROM Users
+WHERE username LIKE CONCAT($1, '%')

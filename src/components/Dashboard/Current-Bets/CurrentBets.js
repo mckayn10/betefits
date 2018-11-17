@@ -1,28 +1,39 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import './current-bets.css';
 
 class CurrentBets extends Component {
 
     state = {
-        currentBetsList: []
+        currentBets: []
     }
 
     componentDidMount = () => {
-        axios.get(`/current-bets/${this.props.id}`)
+        this.callUserInfo()
+    }
+
+    callUserInfo = () => {
+        axios.get(`/current-bets/${this.props.user.id}`)
             .then(response => {
                 this.setState({
-                    currentBetsList: response.data
+                    currentBets: response.data
                 })
             })
     }
 
-    render(){
-        
-        const currentBetsList = this.state.currentBetsList.map((bet, i) => {
+    componentDidUpdate = (prevProps) => {
+        if (this.props.user.id !== prevProps.user.id) {
+            this.callUserInfo()
+        }
+    }
+
+    render() {
+
+        const currentBetsList = this.state.currentBets.map((bet, i) => {
             return (
-                <div key = {i} className="bet-card" >
-                    <div>The Bet: {bet.bet_title} </div>
+                <div key={i} className="bet-card" >
+                    <div className="bet-title">The Bet: {bet.bet_title} </div>
                     <div>Details: {bet.bet_details} </div>
                     <div>Amount: {bet.amount} </div>
                 </div>
@@ -30,8 +41,8 @@ class CurrentBets extends Component {
         })
 
 
-        return(
-            <div>
+        return (
+            <div className="current-container">
                 <div>Current Bets</div>
                 {currentBetsList}
             </div>
@@ -41,8 +52,7 @@ class CurrentBets extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.id,
-        username: state.username
+        user: state.user
     }
 }
 

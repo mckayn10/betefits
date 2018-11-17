@@ -1,0 +1,16 @@
+.bet-card {
+    margin: 25px;
+    width: 90%;
+    background-color: blue;
+}
+
+.bet-title {
+    font-size: 35px;
+    color: black;
+}
+
+
+.current-container {
+    width: 100%;
+    background-color: aqua;
+}
