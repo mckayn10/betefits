@@ -39,6 +39,7 @@ app.post('/login', controller.login);
 app.post('/register', controller.register);
 app.post('/create-offer', controller.createOffer);
 app.post('/send-request', controller.sendRequest);
+app.post('/requests/accept', controller.acceptRequest)
 
 
 app.listen(8080, () => {

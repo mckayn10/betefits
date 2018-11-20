@@ -80,7 +80,7 @@ function userInfo(req, res) {
 function createOffer(req, res) {
     const db = req.app.get('db')
 
-    db.create_bet([req.body.title, req.body.state.details, req.body.state.amount, req.body.creatorID, req.body.state.isOffer])
+    db.create_bet([req.body.state.title, req.body.state.details, req.body.state.amount, req.body.creatorID, req.body.state.isOffer])
         .then(([bet]) => {
             res.status(200).send(bet)
         })
@@ -130,6 +130,18 @@ function getRequests (req, res) {
         })
 }
 
+function acceptRequest (req, res) {
+    const db = req.app.get('db')
+
+    db.accept_request([req.body.betID])
+        .then(response => {
+            res.status(200).send('Bet has been accepted!')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
 module.exports = {
     login,
     register,
@@ -140,5 +152,6 @@ module.exports = {
     currentOffers,
     searchForUser,
     sendRequest,
-    getRequests
+    getRequests,
+    acceptRequest
 }

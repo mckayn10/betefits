@@ -39,7 +39,7 @@ class Nav extends Component {
                 
             })
     }
-
+ 
     handleLogout = () => {
         this.props.history.push('/')
         axios.get('/logout')

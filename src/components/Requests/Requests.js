@@ -32,6 +32,16 @@ class Requests extends Component {
         }
     }
 
+    handleAccept (betSelected){
+        axios.post('/requests/accept', {betID: betSelected.id})
+            .then(response => {
+                console.log(response)
+            })
+            .then(err => {
+                console.log(err, 'error accepting request')
+            })
+    }
+
     render() {
 
         console.log(this.state.currentRequests)
@@ -44,7 +54,7 @@ class Requests extends Component {
                     <div>Amount: {request.amount} </div>
                     <div>Sent By: {request.creator_id} </div>
                     <div>
-                        <button>Accept</button>
+                        <button index={i} onClick={() => this.handleAccept(request)}>Accept</button>
                         <button>Decline</button>
                     </div>
                 </div>

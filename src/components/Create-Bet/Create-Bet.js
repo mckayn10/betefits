@@ -19,13 +19,20 @@ class CreateBet extends Component {
        await this.setState({
             [key]: value
         })
+        
+    }
+
+    async handleSearch (key, value) {
+        await this.setState({
+            [key]: value
+        })
         axios.get(`/search/${this.state.searchText}`)
             .then(response => {
                 console.log(response.data)
                 this.props.searchedUser(response.data)
             })
     }
-
+ 
 
     async handleAddOffer() {
         await this.setState({
@@ -66,8 +73,6 @@ class CreateBet extends Component {
     }
 
     updateSearch = (username) => {
-        console.log(this.props.selectedUser)
-        console.log(this.props.user)
         this.setState({
             searchText: username
         })
@@ -83,7 +88,7 @@ class CreateBet extends Component {
                     <input placeholder="title" name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input placeholder="details" name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input placeholder="how much?" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <input value={this.state.searchText} placeholder="Search Users" name="searchText" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    <input value={this.state.searchText} placeholder="Search Users" name="searchText" onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
                     <button onClick={this.handleClickSearch} >Search</button>
                     <button onClick={this.handleSendRequest} >Send Request</button>
                     <button onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
