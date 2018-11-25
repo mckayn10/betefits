@@ -80,7 +80,8 @@ function userInfo(req, res) {
 function createOffer(req, res) {
     const db = req.app.get('db')
 
-    db.create_bet([req.body.state.title, req.body.state.details, req.body.state.amount, req.body.creatorID, req.body.state.isOffer])
+    db.create_bet([req.body.state.title, req.body.state.details, req.body.state.amount,
+         req.body.creatorID, req.body.state.isOffer, req.body.creatorUsername])
         .then(([bet]) => {
             res.status(200).send(bet)
         })
@@ -109,7 +110,8 @@ function searchForUser(req, res) {
 function sendRequest(req, res) {
     const db = req.app.get('db')
 
-    db.send_request([req.body.bet.title, req.body.bet.details, req.body.bet.amount, req.body.user.id, req.body.selectedUser.id])
+    db.send_request([req.body.bet.title, req.body.bet.details, req.body.bet.amount, req.body.user.id,
+         req.body.selectedUser.id, req.body.user.username, req.body.selectedUser.username])
         .then(() => {
             res.status(200).send('request sent successfully')
         })
@@ -142,6 +144,18 @@ function acceptRequest (req, res) {
         })
 }
 
+function declineRequest (req, res) {
+    const db = req.app.get('db')
+
+    db.decline_request([req.body.betID])
+        .then(response => {
+            res.status(200).send('Bet has been declined!')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
 module.exports = {
     login,
     register,
@@ -153,5 +167,6 @@ module.exports = {
     searchForUser,
     sendRequest,
     getRequests,
-    acceptRequest
+    acceptRequest,
+    declineRequest
 }

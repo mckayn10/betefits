@@ -6,7 +6,8 @@ import './requests.css'
 class Requests extends Component {
 
     state = {
-        currentRequests: []
+        currentRequests: [],
+        acceptStatus: ''
     }
 
     componentDidMount = () => {
@@ -35,10 +36,26 @@ class Requests extends Component {
     handleAccept (betSelected){
         axios.post('/requests/accept', {betID: betSelected.id})
             .then(response => {
-                console.log(response)
+                this.setState({
+                    acceptStatus: response.data
+                })
+                alert(this.state.acceptStatus)
             })
             .then(err => {
                 console.log(err, 'error accepting request')
+            })
+    }
+
+    handleDecline (betSelected) {
+        axios.post('/requests/decline', {betID: betSelected.id})
+            .then(response => {
+                this.setState({
+                    acceptStatus: response.data
+                })
+                alert(this.state.acceptStatus)
+            })
+            .catch(err => {
+                console.log(err, 'error declining request')
             })
     }
 
@@ -52,11 +69,12 @@ class Requests extends Component {
                     <div className="bet-title">Title: {request.bet_title} </div>
                     <div>Details: {request.bet_details} </div>
                     <div>Amount: {request.amount} </div>
-                    <div>Sent By: {request.creator_id} </div>
+                    <div>Sent By: {request.creator_username} </div>
                     <div>
                         <button index={i} onClick={() => this.handleAccept(request)}>Accept</button>
-                        <button>Decline</button>
+                        <button index={i} onClick={() => this.handleDecline(request)} >Decline</button>
                     </div>
+
                 </div>
             )
         })
@@ -65,6 +83,7 @@ class Requests extends Component {
             <div className="view-container">
                 <div>My Requests</div>
                 {currentRequestsList}
+
             </div>
         )
     }

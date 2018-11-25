@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import SearchedUser from '../Searched-User/Searched-User';
-import {searchedUser} from '../../redux/action';
+import { searchedUser } from '../../redux/action';
 
 class CreateBet extends Component {
 
@@ -15,14 +15,14 @@ class CreateBet extends Component {
     }
 
 
-    async handleChange (key, value) {
-       await this.setState({
+    async handleChange(key, value) {
+        await this.setState({
             [key]: value
         })
-        
+
     }
 
-    async handleSearch (key, value) {
+    async handleSearch(key, value) {
         await this.setState({
             [key]: value
         })
@@ -32,13 +32,13 @@ class CreateBet extends Component {
                 this.props.searchedUser(response.data)
             })
     }
- 
+
 
     async handleAddOffer() {
         await this.setState({
             isOffer: true
         })
-        axios.post('/create-offer', {state: this.state, creatorID: this.props.user.id})
+        axios.post('/create-offer', { state: this.state, creatorID: this.props.user.id, creatorUsername: this.props.user.username })
             .then(response => {
                 this.setState({
                     title: '',
@@ -46,7 +46,8 @@ class CreateBet extends Component {
                     amount: 0,
                     searchText: '',
                     creatorID: 0,
-                    isOffer: false
+                    isOffer: false,
+                    successText: ''
                 })
             })
             .catch(err => {
@@ -55,9 +56,12 @@ class CreateBet extends Component {
     }
 
     handleSendRequest = () => {
-        axios.post('/send-request', {bet: this.state, user: this.props.user, selectedUser: this.props.selectedUser})
+        axios.post('/send-request', { bet: this.state, user: this.props.user, selectedUser: this.props.selectedUser })
             .then(response => {
                 console.log(response.data)
+                this.setState({
+                    successText: response.data
+                })
             })
     }
 
@@ -89,10 +93,12 @@ class CreateBet extends Component {
                     <input placeholder="details" name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input placeholder="how much?" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input value={this.state.searchText} placeholder="Search Users" name="searchText" onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
-                    <button onClick={this.handleClickSearch} >Search</button>
+                    {/* <button onClick={this.handleClickSearch} >Search</button> */}
+                    <input type="date" placeholder="select end date" />
                     <button onClick={this.handleSendRequest} >Send Request</button>
                     <button onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
                 </div>
+                <div>{this.state.successText}</div>
                 <SearchedUser updateSearch={this.updateSearch} />
             </div>
         )
@@ -106,4 +112,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {searchedUser})(CreateBet);
+export default connect(mapStateToProps, { searchedUser })(CreateBet);

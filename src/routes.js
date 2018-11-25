@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Offers from './components/Offers/Offers';
 import Requests from './components/Requests/Requests';
 import SearchedUser from './components/Searched-User/Searched-User';
+import ViewProfile from './components/Profile/View-Profile';
 
 
 export default function Routes() {
@@ -17,6 +18,7 @@ export default function Routes() {
             <Route path='/my-offers' component={Offers} />
             <Route path='/my-requests' component={Requests} />
             <Route path='/search/' component={SearchedUser} />
+            <Route path='/view-profile' component={ViewProfile} />
         </Switch>
     )
 }

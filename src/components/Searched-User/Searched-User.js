@@ -13,6 +13,11 @@ class SearchedUser extends Component {
         this.props.updateSearch(selectedUser.username)
     }
 
+    async handleViewProfile (selectedUser) {
+        await this.props.selectedUser(selectedUser)
+        this.props.history.push(`/view-profile/${this.props.selectedUser.username}`)
+    }
+
     
 
     render() {
@@ -23,6 +28,7 @@ class SearchedUser extends Component {
                     <div> {user.username} </div>
                     <div> {user.id} </div>
                     <button index={i} onClick={() => this.handleSelect(user)} >Select User</button>
+                    <button onClick={() => this.handleViewProfile(user)} >View Profile</button>
                 </div>
             )
         })

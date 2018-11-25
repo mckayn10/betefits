@@ -40,6 +40,7 @@ app.post('/register', controller.register);
 app.post('/create-offer', controller.createOffer);
 app.post('/send-request', controller.sendRequest);
 app.post('/requests/accept', controller.acceptRequest)
+app.post('/requests/decline', controller.declineRequest)
 
 
 app.listen(8080, () => {
