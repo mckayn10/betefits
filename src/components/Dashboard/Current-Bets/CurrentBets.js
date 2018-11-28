@@ -36,7 +36,7 @@ class CurrentBets extends Component {
                     <div className="bet-title">The Bet: {bet.bet_title} </div>
                     <div>Details: {bet.bet_details} </div>
                     <div>Amount: {bet.amount} </div>
-                    <div>Bet Created by: {bet.username} and Accepted by: {bet.sent_to_username} </div>
+                    <div>Bet Created by: {bet.creator_username} and Accepted by: {bet.sent_to_username} </div>
                 </div>
             )
         })

@@ -17,16 +17,16 @@ class ViewProfile extends Component {
     }
 
     callUserInfo = () => {
-        axios.get(`/current-bets/${this.props.selectedUser.id}`)
+        console.log(this.props.profileUser)
+        axios.get(`/current-bets/${this.props.profileUser.id}`)
             .then(response => {
-                console.log(response)
                 this.setState({
                     currentBets: response.data
                 })
             })
-        axios.get(`/offers/${this.props.selectedUser.id}`)
+        axios.get(`/offers/${this.props.profileUser.id}`)
             .then(response => {
-                console.log(response)
+                console.log(response.data)
                 this.setState({
                     currentOffers: response.data
                 })
@@ -34,9 +34,18 @@ class ViewProfile extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        if (this.props.selectedUser.id !== prevProps.selectedUser.id) {
+        if (this.props.profileUser.id !== prevProps.profileUser.id) {
             this.callUserInfo()
         }
+    }
+
+    handleAcceptOffer = (offer) => {
+        console.log(this.props.user)
+        axios.post('/offers/accept', {offerID: offer.id, acceptor: this.props.user, })
+            .then(response => {
+                console.log(response.data)
+            })
+
     }
 
     render() {
@@ -58,14 +67,14 @@ class ViewProfile extends Component {
                     <div className="bet-title">The Bet: {offer.bet_title} </div>
                     <div>Details: {offer.bet_details} </div>
                     <div>Amount: {offer.amount} </div>
-                    <button>Accept this offer!</button>
+                    <button index={i} onClick={() => this.handleAcceptOffer(offer)}>Accept this offer!</button>
                 </div>
             )
         })
 
         return (
             <div>
-                {this.props.selectedUser.username}
+                {this.props.profileUser.username}
                 <div className="profile-container">
                     <div> {currentBetsList} </div>
                     <div> {currentOffersList} </div>
@@ -77,7 +86,9 @@ class ViewProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectedUser: state.selectedUser
+        user: state.user,
+        selectedUser: state.selectedUser,
+        profileUser: state.profileUser
     }
 }
 

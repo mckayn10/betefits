@@ -49,6 +49,7 @@ class CreateBet extends Component {
                     isOffer: false,
                     successText: ''
                 })
+                console.log('Offer has been added!')
             })
             .catch(err => {
                 console.log('error creating bet', err)

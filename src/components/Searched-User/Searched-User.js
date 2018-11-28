@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectedUser, logout } from '../../redux/action'
+import { selectedUser, logout, profileUser } from '../../redux/action'
 import './searched-user.css';
 
 
@@ -13,9 +13,9 @@ class SearchedUser extends Component {
         this.props.updateSearch(selectedUser.username)
     }
 
-    async handleViewProfile (selectedUser) {
-        await this.props.selectedUser(selectedUser)
-        this.props.history.push(`/view-profile/${this.props.selectedUser.username}`)
+    async handleViewProfile (profileUser) {
+        await this.props.profileUser(profileUser)
+        this.props.history.push(`/view-profile/${this.props.profileUser.username}`)
     }
 
     
@@ -43,8 +43,9 @@ class SearchedUser extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        searchedUser: state.searchedUser
+        searchedUser: state.searchedUser,
+        profileUser: state.profileUser
     }
 }
 
-export default connect(mapStateToProps, { selectedUser, logout })(SearchedUser);
+export default connect(mapStateToProps, { selectedUser, logout, profileUser })(SearchedUser);

@@ -52,7 +52,7 @@ class Login extends Component {
                     <input type="password" name="password" placeholder="password" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <button onClick={this.handleLogin} >Login</button>
                     <input name="usernameRegister" placeholder="username" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <input name="passwordRegister" placeholder="password" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    <input type="password" name="passwordRegister" placeholder="password" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input name="email" placeholder="email address" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <button onClick={this.handleRegister} >Register</button>
                 </div>

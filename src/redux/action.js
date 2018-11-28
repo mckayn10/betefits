@@ -31,3 +31,12 @@ export const logout = () => {
     }
 }
 
+export const profileUser = (user) => {
+    return {
+        type: 'PROFILE_USER',
+        payload: {
+            profileUser: user
+        }
+    }
+}
+

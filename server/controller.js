@@ -49,7 +49,7 @@ function logout(req, res) {
 function currentBets(req, res) {
     const db = req.app.get('db')
 
-    db.current_bets([req.session.user.id])
+    db.current_bets([req.params.id])
         .then(bets => {
 
             res.status(200).send(bets)
@@ -62,7 +62,7 @@ function currentBets(req, res) {
 function currentOffers(req, res) {
     const db = req.app.get('db')
 
-    db.get_offers([req.session.user.id])
+    db.get_offers([req.params.id])
         .then(offers => {
             res.status(200).send(offers)
         })
@@ -156,6 +156,18 @@ function declineRequest (req, res) {
         })
 }
 
+function acceptOffer (req, res) {
+    const db = req.app.get('db')
+
+    db.accept_offer([req.body.offerID, req.body.acceptor.id, req.body.acceptor.username])
+        .then(response => {
+            res.status(200).send('Offer has been accepted!')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
 module.exports = {
     login,
     register,
@@ -168,5 +180,6 @@ module.exports = {
     sendRequest,
     getRequests,
     acceptRequest,
-    declineRequest
+    declineRequest,
+    acceptOffer
 }
