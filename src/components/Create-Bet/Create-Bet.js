@@ -11,7 +11,8 @@ class CreateBet extends Component {
         details: '',
         amount: 0,
         searchText: '',
-        isOffer: false
+        isOffer: false,
+        date: ''
     }
 
 
@@ -56,8 +57,8 @@ class CreateBet extends Component {
             })
     }
 
-    handleSendRequest = () => {
-        axios.post('/send-request', { bet: this.state, user: this.props.user, selectedUser: this.props.selectedUser })
+    handleSendRequest = (user) => {
+        axios.post('/send-request', { bet: this.state, user: this.props.user, selectedUser: user })
             .then(response => {
                 console.log(response.data)
                 this.setState({
@@ -85,22 +86,25 @@ class CreateBet extends Component {
 
     render() {
 
+        console.log(this.state.date)
+
 
         return (
             <div className="view-container">
                 <div>Create New Bet</div>
-                <div>
+                <div className="create-bet-container">
                     <input placeholder="title" name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input placeholder="details" name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
                     <input placeholder="how much?" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <input value={this.state.searchText} placeholder="Search Users" name="searchText" onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
-                    {/* <button onClick={this.handleClickSearch} >Search</button> */}
-                    <input type="date" placeholder="select end date" />
-                    <button onClick={this.handleSendRequest} >Send Request</button>
+                    <div>Ends On:</div>
+                    <input type="date" placeholder="select end date" name="date"
+                        onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    <input value={this.state.searchText} placeholder="Search Users" name="searchText"
+                        onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
                     <button onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
                 </div>
                 <div>{this.state.successText}</div>
-                <SearchedUser updateSearch={this.updateSearch} />
+                <SearchedUser updateSearch={this.updateSearch} sendRequest={this.handleSendRequest} />
             </div>
         )
     }

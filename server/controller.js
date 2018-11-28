@@ -81,7 +81,7 @@ function createOffer(req, res) {
     const db = req.app.get('db')
 
     db.create_bet([req.body.state.title, req.body.state.details, req.body.state.amount,
-         req.body.creatorID, req.body.state.isOffer, req.body.creatorUsername])
+         req.body.creatorID, req.body.state.isOffer, req.body.creatorUsername, req.body.state.date])
         .then(([bet]) => {
             res.status(200).send(bet)
         })
@@ -111,7 +111,7 @@ function sendRequest(req, res) {
     const db = req.app.get('db')
 
     db.send_request([req.body.bet.title, req.body.bet.details, req.body.bet.amount, req.body.user.id,
-         req.body.selectedUser.id, req.body.user.username, req.body.selectedUser.username])
+         req.body.selectedUser.id, req.body.user.username, req.body.selectedUser.username, req.body.bet.date])
         .then(() => {
             res.status(200).send('request sent successfully')
         })
