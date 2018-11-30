@@ -149,7 +149,7 @@ function declineRequest (req, res) {
 
     db.decline_request([req.body.betID])
         .then(response => {
-            res.status(200).send('Bet has been declined!')
+            res.status(200).send('Bet/offer has been declined/removed!')
         })
         .catch(err => {
             res.status(500).send(err)

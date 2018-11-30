@@ -27,18 +27,19 @@ class Nav extends Component {
             .then(response => {
                 console.log(response.data)
                 this.props.searchedUser(response.data)
+                this.props.history.push('/search')
             })
     }
 
-    handleClickSearch = () => {
-        axios.get(`/search/${this.state.searchUser}`)
-            .then(response => {
-                console.log(response.data)
-                this.props.searchedUser(response.data)
-                this.props.history.push('/search')
+    // handleClickSearch = () => {
+    //     axios.get(`/search/${this.state.searchUser}`)
+    //         .then(response => {
+    //             console.log(response.data)
+    //             this.props.searchedUser(response.data)
+    //             this.props.history.push('/search')
                 
-            })
-    }
+    //         })
+    // }
  
     handleLogout = () => {
         this.props.history.push('/')
@@ -63,9 +64,9 @@ class Nav extends Component {
                     <div className="menu-container">
                         <div className="user-info">
                             <input value={this.state.searchUser} placeholder="search users" onChange={(e) => this.handleSearch(e.target.value)} />
-                            <button onClick={this.handleClickSearch} >Search</button>
-                            <div>Username: {this.props.user.username}</div>
-                            <div>User ID: {this.props.user.id}</div>
+                            <div className="profile-pic"></div>
+                            <h2 id="username">{this.props.user.username}</h2>
+                            <h5 id="username">User ID: {this.props.user.id}</h5>
                         </div>
                         <Link to='/dashboard'>Dashboard</Link>
                         <Link to='/my-offers'>My Offers</Link>
@@ -73,7 +74,7 @@ class Nav extends Component {
                         <Link to='/create-bet'>Create New Bet</Link>
                     </div>
                     <div className="logout-button">
-                        <div onClick={this.handleLogout} >Logout</div>
+                        <h4 onClick={this.handleLogout} >Logout</h4>
                     </div>
                 </div>
             )

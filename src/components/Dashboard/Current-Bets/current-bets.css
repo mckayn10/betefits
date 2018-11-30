@@ -1,16 +1,17 @@
-.bet-card {
-    margin: 25px;
-    width: 90%;
-    background-color: blue;
+.current-container, .past-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 7px double black;
+    border-bottom: 7px double black;
+    padding: 10px;
 }
 
-.bet-title {
-    font-size: 35px;
-    color: black;
-}
 
-
-.current-container {
+.bets-container {
     width: 100%;
-    background-color: aqua;
+    display: flex;
+
 }
+

@@ -5,11 +5,24 @@
     display: flex;
     flex-direction: column;
     margin: 25px;
+
 }
 
 .searched-user {
     width: 95%;
-    height: 100px;
-    background-color: blanchedalmond;
-    margin: 10px;
+    height: 50%;
+    background-color: rgb(233, 233, 233);
+    margin: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -3px 5px 10px .5px rgb(146, 146, 146);
+}
+
+.searched-user > button {
+    margin: 5px;
+    background-color: white;
+}
+
+h3 {
+    font-size: 20px;
 }

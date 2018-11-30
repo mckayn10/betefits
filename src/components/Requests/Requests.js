@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import BetCard from '../Bet-Card/Bet-Card';
 import './requests.css'
 
 class Requests extends Component {
@@ -65,17 +66,12 @@ class Requests extends Component {
 
         const currentRequestsList = this.state.currentRequests.map((request, i) => {
             return (
-                <div key={i} className="bet-card">
-                    <div className="bet-title">Title: {request.bet_title} </div>
-                    <div>Details: {request.bet_details} </div>
-                    <div>Amount: {request.amount} </div>
-                    <div>Sent By: {request.creator_username} </div>
+                <BetCard key={i} title={request.bet_title} details={request.bet_details} amount={request.amount} date={request.end_date} index={i} buttons={(
                     <div>
                         <button index={i} onClick={() => this.handleAccept(request)}>Accept</button>
                         <button index={i} onClick={() => this.handleDecline(request)} >Decline</button>
                     </div>
-
-                </div>
+                )} />
             )
         })
 

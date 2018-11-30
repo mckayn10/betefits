@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import BetCard from '../../Bet-Card/Bet-Card';
+import '../../Bet-Card/bet-card.css';
 import './current-bets.css';
 
 class CurrentBets extends Component {
@@ -32,20 +34,20 @@ class CurrentBets extends Component {
 
         const currentBetsList = this.state.currentBets.map((bet, i) => {
             return (
-                <div key={i} className="bet-card" >
-                    <div className="bet-title">The Bet: {bet.bet_title} </div>
-                    <div>Details: {bet.bet_details} </div>
-                    <div>Amount: {bet.amount} </div>
-                    <div>Bet Created by: {bet.creator_username} and Accepted by: {bet.sent_to_username} </div>
-                </div>
+                <BetCard key={i} title={bet.bet_title} details={bet.bet_details} amount={bet.amount} date={bet.end_date} creator={bet.creator_username} acceptor={bet.sent_to_username} />
             )
         })
 
 
         return (
-            <div className="current-container">
-                <div>Current Bets</div>
-                {currentBetsList}
+            <div className="bets-container">
+                <div className="current-container">
+                    <h1>Current Bets</h1>
+                    {currentBetsList}
+                </div>
+                <div className="past-container">
+                    <h1>Past Bets</h1>
+                </div>
             </div>
         )
     }

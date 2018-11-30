@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import BetCard from '../Bet-Card/Bet-Card';
 import './profile.css';
 
 class ViewProfile extends Component {
@@ -52,24 +53,17 @@ class ViewProfile extends Component {
 
         const currentBetsList = this.state.currentBets.map((bet, i) => {
             return (
-                <div key={i} className="bet-card" >
-                    <div className="bet-title">The Bet: {bet.bet_title} </div>
-                    <div>Details: {bet.bet_details} </div>
-                    <div>Amount: {bet.amount} </div>
-                    <div>Bet Created by {bet.creator_username} and Accepted by {bet.sent_to_username} </div>
-                </div>
+                <BetCard key={i} title={bet.bet_title} details={bet.bet_details} amount={bet.amount} date={bet.end_date} creator={bet.creator_username} acceptor={bet.sent_to_username} />
             )
         })
 
         const currentOffersList = this.state.currentOffers.map((offer, i) => {
             return (
-                <div key={i} className="bet-card" >
-                    <div className="bet-title">The Bet: {offer.bet_title} </div>
-                    <div>Details: {offer.bet_details} </div>
-                    <div>Amount: {offer.amount} </div>
-                    <button index={i} onClick={() => this.handleAcceptOffer(offer)}>Accept this offer!</button>
-                </div>
+                <BetCard key={i} title={offer.bet_title} details={offer.bet_details} amount={offer.amount} date={offer.end_date} deleteButton={(
+                    <button className="remove-button" onClick={() => this.handleRemove(i, offer.id)} >Remove Offer</button>
+                )} />
             )
+            
         })
 
         return (

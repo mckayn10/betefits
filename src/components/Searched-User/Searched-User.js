@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectedUser, logout, profileUser } from '../../redux/action'
 import './searched-user.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import SearchedUserCard from './Search-Card';
 
 
 class SearchedUser extends Component {
@@ -26,9 +27,12 @@ class SearchedUser extends Component {
         const searchedUsersList = this.props.searchedUser.map((user, i) => {
             return (
                 <div key={i} className="searched-user">
-                    <div> {user.username} </div>
-                    <div> {user.id} </div>
-                    <button index={i} onClick={() => this.props.sendRequest(user)}>Send Request</button>
+                    <SearchedUserCard key={i} username={user.username} id={user.id}
+
+                        sendRequestButton={this.props.sendRequest ? (
+                            <button index={i} onClick={() => this.props.sendRequest(user)}>Send Request</button>
+                        ) : null} />
+
                     <button onClick={() => this.handleViewProfile(user)} >View Profile</button>
                 </div>
             )
