@@ -1,0 +1,60 @@
+.profile-pic-container {
+    width: 80%;
+    height: 80vh;
+    background-color: rgb(122, 45, 45);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: -5px 5px 10px rgb(68, 68, 68);
+}
+
+#profile-pic-container {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image-container {
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 60%;
+    height: 60vh;
+    /* background-image: url('../../../assets/person-placeholder-3.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    border: 5px solid rgba(0, 0, 0, 0.425);
+    
+}
+
+.dropzone-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropzone-container:hover {
+    cursor: pointer;
+}
+
+.dropzone {
+    height: 10vh;
+    width: 100%;
+    border: 3px dashed rgba(0, 0, 0, 0.459);
+    color: rgba(255, 255, 255, 0.534);
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

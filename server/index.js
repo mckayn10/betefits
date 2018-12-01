@@ -42,6 +42,7 @@ app.post('/send-request', controller.sendRequest);
 app.post('/requests/accept', controller.acceptRequest)
 app.post('/requests/decline', controller.declineRequest)
 app.post('/offers/accept', controller.acceptOffer)
+app.post('/profile-picture', controller.updatePicture);
 
 
 app.listen(8080, () => {

@@ -30,17 +30,34 @@ a {
     padding-left: 25px;
 }
 
+.logout-button:hover {
+    cursor: pointer;
+}
+
 .profile-pic {
     width: 100px;
     height: 100px;
     margin: 10px;
-    background-image: url('../../assets/person-placeholder-3.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    border-radius: 30px;
+    padding-top: 5px;
 
 }
 
 #username {
-    margin: 2px;
+    margin: -10px;
+}
+
+#user-id {
+
+}
+
+h2 {
+    font-size: 35px;
+}
+
+
+.update-pic {
+    color: rgb(86, 86, 253);
+    margin-top: -30px;
+    font-size: 13px;
 }

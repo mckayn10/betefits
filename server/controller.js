@@ -168,6 +168,18 @@ function acceptOffer (req, res) {
         })
 }
 
+function updatePicture (req, res) {
+    const db = req.app.get('db')
+
+    db.update_picture([req.body.url, req.body.userID])
+        .then(response => {
+            res.status(200).send('Picture successfully updated')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
 module.exports = {
     login,
     register,
@@ -181,5 +193,6 @@ module.exports = {
     getRequests,
     acceptRequest,
     declineRequest,
-    acceptOffer
+    acceptOffer,
+    updatePicture
 }

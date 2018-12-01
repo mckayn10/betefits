@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './login.css';
 import { connect } from 'react-redux';
-import { sessionUser } from '../../redux/action';
+import { sessionUser, updatePicture } from '../../redux/action';
 
 
 
@@ -30,6 +30,11 @@ class Login extends Component {
                 console.log(response.data)
                 this.props.sessionUser(response.data)
                 this.props.history.push(`/dashboard/${this.props.user.username}`)
+                this.props.updatePicture(this.props.user.picture)
+
+            })
+            .catch(err => {
+                console.log(alert('username or password not found'))
             })
     }
 
@@ -38,6 +43,7 @@ class Login extends Component {
             .then(response => {
                 this.props.sessionUser(response.data)
                 this.props.history.push(`/dashboard/${this.props.user.username}`)
+                this.props.updatePicture(this.props.user.picture)
             })
     }
 
@@ -70,4 +76,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { sessionUser })(Login);
+export default connect(mapStateToProps, { sessionUser, updatePicture })(Login);

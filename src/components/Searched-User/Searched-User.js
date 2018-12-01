@@ -27,13 +27,21 @@ class SearchedUser extends Component {
         const searchedUsersList = this.props.searchedUser.map((user, i) => {
             return (
                 <div key={i} className="searched-user">
-                    <SearchedUserCard key={i} username={user.username} id={user.id}
+                    <SearchedUserCard 
+                    key={i} 
+                    username={user.username} 
+                    id={user.id} 
+                    picture={user.picture}
 
                         sendRequestButton={this.props.sendRequest ? (
                             <button index={i} onClick={() => this.props.sendRequest(user)}>Send Request</button>
-                        ) : null} />
+                        ) : null} 
+                        
+                        viewProfile={<button onClick={() => this.handleViewProfile(user)} >View Profile</button>}
+                        
+                        />
+                    
 
-                    <button onClick={() => this.handleViewProfile(user)} >View Profile</button>
                 </div>
             )
         })

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './nav.css';
 import { connect } from 'react-redux';
-import { sessionUser, searchedUser, logout } from '../../redux/action';
+import { sessionUser, searchedUser, logout, updatePicture } from '../../redux/action';
 import axios from 'axios';
 
 
@@ -19,7 +19,7 @@ class Nav extends Component {
             })
     }
 
-    async handleSearch (value) {
+    async handleSearch(value) {
         await this.setState({
             searchUser: value
         })
@@ -37,10 +37,10 @@ class Nav extends Component {
     //             console.log(response.data)
     //             this.props.searchedUser(response.data)
     //             this.props.history.push('/search')
-                
+
     //         })
     // }
- 
+
     handleLogout = () => {
         this.props.history.push('/')
         axios.get('/logout')
@@ -64,9 +64,15 @@ class Nav extends Component {
                     <div className="menu-container">
                         <div className="user-info">
                             <input value={this.state.searchUser} placeholder="search users" onChange={(e) => this.handleSearch(e.target.value)} />
-                            <div className="profile-pic"></div>
+                            <div className="profile-pic" style={{
+                                backgroundImage: `url(${this.props.profileImage})`,
+                                backgroundSize: 'contain',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center'
+                            }}></div>
+                            <Link className="update-pic" to='/profile-picture'>Update</Link>
                             <h2 id="username">{this.props.user.username}</h2>
-                            <h5 id="username">User ID: {this.props.user.id}</h5>
+                            <h5 id="user-id">User ID: {this.props.user.id}</h5>
                         </div>
                         <Link to='/dashboard'>Dashboard</Link>
                         <Link to='/my-offers'>My Offers</Link>
@@ -84,8 +90,9 @@ class Nav extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        profileImage: state.profileImage
     }
 }
 
-export default connect(mapStateToProps, { sessionUser, searchedUser, logout })(withRouter(Nav));
+export default connect(mapStateToProps, { sessionUser, searchedUser, logout, updatePicture })(withRouter(Nav));

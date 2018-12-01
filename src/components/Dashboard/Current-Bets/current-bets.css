@@ -1,11 +1,15 @@
-.current-container, .past-container {
+.current-container, .past-container  {
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 7px double black;
-    border-bottom: 7px double black;
+    border-right: 1px solid black;
     padding: 10px;
+    margin: 2.5px;
+}
+
+.past-container {
+    border-left: 1px solid black;
 }
 
 

@@ -2,13 +2,15 @@ const initState = {
     user: {},
     searchedUser: [],
     selectedUser: {},
-    profileUser: {}
+    profileUser: {},
+    profileImage: ''
 }
 
 const SAVE_SESSION_USER = "SAVE_SESSION_USER";
 const SAVE_SEARCHED_USER = "SAVE_SEARCHED_USER";
 const SELECTED_USER = "SELECTED_USER";
 const PROFILE_USER = "PROFILE_USER";
+const PROFILE_IMAGE = "PROFILE_IMAGE";
 const LOGOUT = "LOGOUT"
 
 const reducer = (state = initState, action) => {
@@ -37,6 +39,11 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 profileUser: action.payload.profileUser
+            }
+        case PROFILE_IMAGE: 
+            return {
+                ...state,
+                profileImage: action.payload.profileImage
             }
         default: return state
     }

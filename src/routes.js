@@ -7,6 +7,7 @@ import Offers from './components/Offers/Offers';
 import Requests from './components/Requests/Requests';
 import SearchedUser from './components/Searched-User/Searched-User';
 import ViewProfile from './components/Profile/View-Profile';
+import ProfilePic from './components/Profile/Profile-Pic/Profile-Pic';
 
 
 export default function Routes() {
@@ -19,6 +20,7 @@ export default function Routes() {
             <Route path='/my-requests' component={Requests} />
             <Route path='/search/' component={SearchedUser} />
             <Route path='/view-profile' component={ViewProfile} />
+            <Route path='/profile-picture' component={ProfilePic} />
         </Switch>
     )
 }

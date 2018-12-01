@@ -40,3 +40,11 @@ export const profileUser = (user) => {
     }
 }
 
+export const updatePicture = (image) => {
+    return {
+        type: 'PROFILE_IMAGE',
+        payload: {
+            profileImage: image
+        }
+    }
+}
