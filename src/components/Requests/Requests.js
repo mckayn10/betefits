@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { requestNotif } from '../../redux/action';
 import BetCard from '../Bet-Card/Bet-Card';
 import './requests.css'
 
@@ -18,9 +19,10 @@ class Requests extends Component {
     callUserRequests = () => {
         axios.get(`/requests/${this.props.user.id}`)
             .then(response => {
-                console.log(response.data)
+                this.props.requestNotif(response.data.length)
                 this.setState({
-                    currentRequests: response.data
+                    currentRequests: response.data,
+                    numRequests: this.state.currentRequests.length
                 })
             })
             .catch(err => {
@@ -34,26 +36,36 @@ class Requests extends Component {
         }
     }
 
-    handleAccept (betSelected){
-        axios.post('/requests/accept', {betID: betSelected.id})
+    handleAccept(betSelected, index) {
+        axios.post('/requests/accept', { betID: betSelected.id })
             .then(response => {
                 this.setState({
                     acceptStatus: response.data
                 })
                 alert(this.state.acceptStatus)
+                let newArray = [...this.state.currentRequests];
+                newArray.splice(index, 1)
+                this.setState({
+                    currentRequests: newArray
+                })
             })
             .then(err => {
                 console.log(err, 'error accepting request')
             })
     }
 
-    handleDecline (betSelected) {
-        axios.post('/requests/decline', {betID: betSelected.id})
+    handleDecline(betSelected, index) {
+        axios.post('/requests/decline', { betID: betSelected.id })
             .then(response => {
                 this.setState({
                     acceptStatus: response.data
                 })
                 alert(this.state.acceptStatus)
+                let newArray = [...this.state.currentRequests];
+                newArray.splice(index, 1)
+                this.setState({
+                    currentRequests: newArray
+                })
             })
             .catch(err => {
                 console.log(err, 'error declining request')
@@ -62,24 +74,30 @@ class Requests extends Component {
 
     render() {
 
-        console.log(this.state.currentRequests)
+
 
         const currentRequestsList = this.state.currentRequests.map((request, i) => {
             return (
-                <BetCard key={i} title={request.bet_title} details={request.bet_details} amount={request.amount} date={request.end_date} index={i} buttons={(
-                    <div>
-                        <button index={i} onClick={() => this.handleAccept(request)}>Accept</button>
-                        <button index={i} onClick={() => this.handleDecline(request)} >Decline</button>
-                    </div>
-                )} />
+                <BetCard
+                    key={i}
+                    title={request.bet_title}
+                    details={request.bet_details}
+                    amount={request.amount}
+                    date={new Date(request.bet_ends)}
+                    index={i}
+                    buttons={(
+                        <div>
+                            <button index={i} onClick={() => this.handleAccept(request, i)}>Accept</button>
+                            <button index={i} onClick={() => this.handleDecline(request, i)} >Decline</button>
+                        </div>
+                    )} />
             )
         })
 
         return (
-            <div className="view-container">
-                <div>My Requests</div>
+            <div className="view-container" id="requests-container">
+                <h1>My Requests</h1>
                 {currentRequestsList}
-
             </div>
         )
     }
@@ -91,4 +109,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Requests);
+export default connect(mapStateToProps, { requestNotif })(Requests);

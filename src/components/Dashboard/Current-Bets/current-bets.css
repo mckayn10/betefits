@@ -1,21 +1,17 @@
-.current-container, .past-container  {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-right: 1px solid black;
-    padding: 10px;
-    margin: 2.5px;
-}
-
-.past-container {
-    border-left: 1px solid black;
-}
-
-
 .bets-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    grid-area: a;
+
 
 }
+
+
+
+
+.bets-container > h1 {
+    text-align: center;
+}
+
 

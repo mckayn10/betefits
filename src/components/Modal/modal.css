@@ -1,0 +1,66 @@
+.modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.849);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    width: 50%;
+    height: 40%;
+    background-color: rgb(17, 22, 49);
+    border: 1px solid white;
+    border-radius: 5px;
+    justify-content: center;
+    margin-left: -200px;
+}
+
+.decide-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#decide-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#winner {
+    width: 300px;
+    margin: 5px;
+    padding: 45px;
+    background-color: rgb(190, 190, 190);
+    text-align: center;
+}
+
+#winner:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+#select-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -50px;
+    padding-top: 25px;
+}
+
+.confirm-container {
+    margin-bottom: 50px;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    color: rgba(255, 255, 255, 0.507);
+    font-size: 25px;
+    padding: 20px;
+}

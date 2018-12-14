@@ -1,5 +1,30 @@
+#profile-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .profile-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+#profile-username {
+    display: flex;
+    margin: 50px;
+}
+
+#profile-username > h1  {
+
+
+}
+
+#profile-pic {
+    width: 200px;
+    height: 100px;
+}
+
+#bets-list, #offers-list {
+    overflow-y: scroll;
+    width: 500px;
 }

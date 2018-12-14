@@ -1,0 +1,1 @@
+select * from Bets where bet_ends < CURRENT_DATE

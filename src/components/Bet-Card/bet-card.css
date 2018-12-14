@@ -1,14 +1,11 @@
 .bet-card-container {
     margin: 10px;
     width: 90%;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(228, 230, 255);
     border-radius: 5px;
-    box-shadow: -3px 5px 10px .5px rgb(146, 146, 146);
+    /* box-shadow: -5px 6px 10px .3px rgb(51, 51, 51); */
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
+    border: 1px solid blue;
 }
 
 .bet-title {
@@ -17,7 +14,7 @@
     font-style: italic;
     padding-bottom: 20px;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
 }
 
 .bet-column {
@@ -37,5 +34,6 @@
 }
 
 .remove-button {
-    width: 100px;
+    width: 150px;
+    margin-top: 15px;
 }

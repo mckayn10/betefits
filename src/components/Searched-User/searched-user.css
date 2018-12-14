@@ -1,11 +1,12 @@
 
 .searched-user-container {
-    width: 60%;
-    height: 100vh;
+    width: 100%;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 25px;
+    align-items: center;
+    margin: 25px 25px 25px 0;
 
 }
 
@@ -16,6 +17,7 @@
 
 .search-card-container {
     width: 100%;
+
     display: flex;
     justify-content: space-between;
 
@@ -24,12 +26,12 @@
 
 .searched-user {
     width: 95%;
-    height: 50%;
-    background-color: rgb(233, 233, 233);
+    height: 250px;
+    background-color: rgb(251, 251, 253);
     margin: 25px;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: -3px 5px 10px .5px rgb(146, 146, 146);
+    box-shadow: -3px 5px 10px .5px rgb(53, 53, 53);
 }
 
 .searched-user > button {
@@ -42,7 +44,7 @@ h3 {
 }
 
 .search-info {
-    margin-top: -20px
+    margin-top: 20px
 }
 
 .search-card-buttons {

@@ -1,17 +1,31 @@
 .nav-container {
-    background-color: rgba(107, 19, 19, 0.945);
+    background-color: rgb(13, 13, 48);
     height: 100vh;
     width: 250px;
 }
 
 .menu-container, .logout-button {
-
     display: flex;
     flex-direction: column;
+    text-shadow: -2px 1px 2px black;
+
+}
+
+#item {
+    color: white;
+}
+
+.menu-container > input {
+    width: 80%;
+    text-align: center;
+    margin: 20px;
+}
+
+#mobile-menu-container > a {
+    padding: 10px;
 }
 
 a {
-    text-decoration: none; 
     padding: 25px;
     color: white;
 }
@@ -25,30 +39,34 @@ a {
     
 }
 
+
 .logout-button > h4 {
-    color: rgb(187, 18, 18);
+    color: rgb(116, 116, 116);
     padding-left: 25px;
+    text-shadow: none;
+    font-size: 16px;
 }
 
 .logout-button:hover {
     cursor: pointer;
 }
 
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    border-radius: 30px;
-    padding-top: 5px;
-
+.circular-image img{
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
+
 #username {
-    margin: -10px;
+    margin: 5px;
 }
 
 #user-id {
-
+    font-size: 13px;
 }
 
 h2 {
@@ -57,7 +75,35 @@ h2 {
 
 
 .update-pic {
-    color: rgb(86, 86, 253);
-    margin-top: -30px;
+    color: rgb(0, 0, 197);
+    margin-top: 0px;
+    padding: 0;
     font-size: 13px;
+    text-shadow: none;
 }
+
+.noti {
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+    padding: 5px 5px;
+    border-radius: 20px;
+    text-shadow: none;
+}
+
+.drop-down {
+    width: 300px;
+    height: 550px;
+    background-color: rgb(13, 13, 48);
+    position: fixed;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid white;
+}
+
+
+#menu-button {
+    margin: 5px 2px 5px 5px;
+    padding: 1px;
+    width: 50px;
+}
+

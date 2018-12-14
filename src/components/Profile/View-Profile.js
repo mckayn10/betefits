@@ -4,6 +4,7 @@ import axios from 'axios';
 import BetCard from '../Bet-Card/Bet-Card';
 import './profile.css';
 
+
 class ViewProfile extends Component {
 
     state = {
@@ -42,7 +43,7 @@ class ViewProfile extends Component {
 
     handleAcceptOffer = (offer) => {
         console.log(this.props.user)
-        axios.post('/offers/accept', {offerID: offer.id, acceptor: this.props.user, })
+        axios.post('/offers/accept', { offerID: offer.id, acceptor: this.props.user, })
             .then(response => {
                 console.log(response.data)
             })
@@ -63,15 +64,23 @@ class ViewProfile extends Component {
                     <button className="remove-button" onClick={() => this.handleRemove(i, offer.id)} >Remove Offer</button>
                 )} />
             )
-            
+
         })
 
         return (
-            <div>
-                {this.props.profileUser.username}
+            <div className="view-container" id="profile-container">
+                <div id="profile-username">
+                    <div id="profile-pic" style={{
+                        backgroundImage: `url(${this.props.profileUser.picture})`,
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center'
+                    }}></div>
+                    <h1>{this.props.profileUser.username}</h1>
+                </div>
                 <div className="profile-container">
-                    <div> {currentBetsList} </div>
-                    <div> {currentOffersList} </div>
+                    <div id="bets-list"> {currentBetsList} </div>
+                    <div id="offers-list"> {currentOffersList} </div>
                 </div>
             </div>
         )

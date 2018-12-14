@@ -1,6 +1,159 @@
 .App-container {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgb(46, 46, 46);
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
+
+.view-container {
+    background-color: rgb(46, 46, 46);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding: 20px 0px 0 50px;
+
+}
+
+
+button {
+    background-color: rgb(251, 251, 253);
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+    width: 100px;
+    border-radius: 2px!important;
+    overflow: visible;
+
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(119, 124, 156);
+    color: white;
+    border: 1px solid rgb(99, 99, 99);
+
+}
+
+.up {
+    margin-top: 100px;
+    background-color: rgb(31, 4, 4);
+  }
+
+.container {
+    height: 70vh!important;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(13, 13, 48);
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+.nav-item, .nav-link {
+    cursor: pointer;
+    color: rgb(255, 255, 255)!important;
+
+}
+
+.active {
+    background-color: rgb(59, 70, 145)!important;
+    color: white!important;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+    .App-container {
+        background-color: rgb(14, 14, 14);
+        background-image: none;
+    }
+
+    .nav-container {
+        display: none;
+    }
+
+    .dashboard-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 
+        
+        "a a a "
+        "a a a "
+        "b b b "
+        "b b b "
+        "c c c "
+        "c c c "
+
+        ;
+
+
+        width: 100%;
+        overflow-y: scroll;
+
+    }
+
+    .current-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(46, 46, 46);
+        
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .mobile-menu {
+        display: none;
+    }
+
+    .dashboard-container {
+        /* background-color: white; */
+        overflow-y: scroll;
+        margin: 0px;
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-gap: 5px;
+        grid-template-areas: 
+        
+        "a a a a b b b "
+        "a a a a b b b "
+        "a a a a b b b "
+        "a a a a c c c "
+        "a a a a c c c "
+        "a a a a c c c "
+        
+    }
+
+    .current-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(46, 46, 46);
+        overflow-y: scroll;
+        
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    .search-card-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+}
+
+h1 {
+    color: white!important;
+    text-shadow: -1px 1px 5px white;
+}
+
+
+

@@ -6,13 +6,14 @@ export default function SearchedUserCard(props) {
     return (
         <div className="search-card-container">
             <div className="info-container">
-                <div>
-                    <div className="profile-pic" style={{
+                <div className="circular-image">
+                    <img src={`${props.picture}`} />
+                    {/* <div className="profile-pic" style={{
                         backgroundImage: `url(${props.picture})`,
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center'
-                    }}></div>
+                    }}></div> */}
                 </div>
                 <div className="search-info">
                     <h3> {props.username} </h3>

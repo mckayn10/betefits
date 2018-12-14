@@ -33,6 +33,7 @@ app.get('/offers/:id', controller.currentOffers)
 app.get('/user-info', controller.userInfo);
 app.get('/search/:search', controller.searchForUser)
 app.get('/requests/:id', controller.getRequests)
+app.get('/notifications/:id', controller.getNumRequests)
 
 //POST ENDPOINTS
 app.post('/login', controller.login);
@@ -43,6 +44,9 @@ app.post('/requests/accept', controller.acceptRequest)
 app.post('/requests/decline', controller.declineRequest)
 app.post('/offers/accept', controller.acceptOffer)
 app.post('/profile-picture', controller.updatePicture);
+app.post('/winner/:id', controller.updateWinner);
+app.post('/loser/:id', controller.updateLoser);
+app.post('/resolve-bet', controller.resolveBet);
 
 
 app.listen(8080, () => {

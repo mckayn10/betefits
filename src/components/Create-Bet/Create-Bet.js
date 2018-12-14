@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import SearchedUser from '../Searched-User/Searched-User';
 import { searchedUser } from '../../redux/action';
+import './create-bet.css';
 
 class CreateBet extends Component {
 
@@ -91,20 +92,33 @@ class CreateBet extends Component {
 
         return (
             <div className="view-container">
-                <div>Create New Bet</div>
                 <div className="create-bet-container">
-                    <input placeholder="title" name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <input placeholder="details" name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <input placeholder="how much?" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    <div>Ends On:</div>
-                    <input type="date" placeholder="select end date" name="date"
-                        onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    <h1>Create New Bet</h1>
+                    <div className="category">
+                        <h3>Title</h3>
+                        <input name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    </div>
+                    <div className="category">
+                        <h3>Creator Wins If:</h3>
+                        <input name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    </div>
+                    <div className="category" >
+                        <h3>How Much?</h3>
+                        <input id="create-amount" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    </div>
+                    <div className="category">
+                        <h3>Ends On:</h3>
+                        <input type="date" name="date"
+                            onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    </div>
                     <input value={this.state.searchText} placeholder="Search Users" name="searchText"
                         onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
                     <button onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
+                    <div>{this.state.successText}</div>
                 </div>
-                <div>{this.state.successText}</div>
-                <SearchedUser updateSearch={this.updateSearch} sendRequest={this.handleSendRequest} />
+                <div className="create-search-container">
+                    <SearchedUser updateSearch={this.updateSearch} sendRequest={this.handleSendRequest} />
+                </div>
             </div>
         )
     }

@@ -1,0 +1,16 @@
+.amount-container {
+    width: 100%;
+    background-color: rgb(251, 251, 253);
+    grid-area: b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 20px;
+    
+}
+
+.amount-container > div {
+    font-size: 100px;
+}

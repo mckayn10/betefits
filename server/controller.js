@@ -33,6 +33,7 @@ function register(req, res) {
         }
         db.create_user([req.body.email, req.body.usernameRegister, hash])
             .then(([user]) => {
+                req.session.user = user
                 res.status(200).send(user)
             })
             .catch(err => {
@@ -81,7 +82,7 @@ function createOffer(req, res) {
     const db = req.app.get('db')
 
     db.create_bet([req.body.state.title, req.body.state.details, req.body.state.amount,
-         req.body.creatorID, req.body.state.isOffer, req.body.creatorUsername, req.body.state.date])
+    req.body.creatorID, req.body.state.isOffer, req.body.creatorUsername, req.body.state.date])
         .then(([bet]) => {
             res.status(200).send(bet)
         })
@@ -111,7 +112,7 @@ function sendRequest(req, res) {
     const db = req.app.get('db')
 
     db.send_request([req.body.bet.title, req.body.bet.details, req.body.bet.amount, req.body.user.id,
-         req.body.selectedUser.id, req.body.user.username, req.body.selectedUser.username, req.body.bet.date])
+    req.body.selectedUser.id, req.body.user.username, req.body.selectedUser.username, req.body.bet.date])
         .then(() => {
             res.status(200).send('request sent successfully')
         })
@@ -120,7 +121,7 @@ function sendRequest(req, res) {
         })
 }
 
-function getRequests (req, res) {
+function getRequests(req, res) {
     const db = req.app.get('db')
 
     db.get_requests([req.params.id])
@@ -132,7 +133,7 @@ function getRequests (req, res) {
         })
 }
 
-function acceptRequest (req, res) {
+function acceptRequest(req, res) {
     const db = req.app.get('db')
 
     db.accept_request([req.body.betID])
@@ -144,7 +145,7 @@ function acceptRequest (req, res) {
         })
 }
 
-function declineRequest (req, res) {
+function declineRequest(req, res) {
     const db = req.app.get('db')
 
     db.decline_request([req.body.betID])
@@ -156,7 +157,7 @@ function declineRequest (req, res) {
         })
 }
 
-function acceptOffer (req, res) {
+function acceptOffer(req, res) {
     const db = req.app.get('db')
 
     db.accept_offer([req.body.offerID, req.body.acceptor.id, req.body.acceptor.username])
@@ -168,12 +169,60 @@ function acceptOffer (req, res) {
         })
 }
 
-function updatePicture (req, res) {
+function updatePicture(req, res) {
     const db = req.app.get('db')
 
     db.update_picture([req.body.url, req.body.userID])
         .then(response => {
             res.status(200).send('Picture successfully updated')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
+function getNumRequests(req, res) {
+    const db = req.app.get('db')
+
+    db.num_requests([req.params.id])
+        .then(([count]) => {
+            res.status(200).send(count)
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
+function updateWinner(req, res) {
+    const db = req.app.get('db')
+
+    db.update_winner([req.params.id, req.body.bet.amount])
+        .then(response => {
+            res.status(200).send('Winner earnings have been updated')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
+function updateLoser(req, res) {
+    const db = req.app.get('db')
+
+    db.update_loser([req.params.id, req.body.bet.amount])
+        .then(response => {
+            res.status(200).send('Loser earnings have been updated')
+        })
+        .catch(err => {
+            res.status(500).send(err)
+        })
+}
+
+function resolveBet(req, res) {
+    const db = req.app.get('db')
+
+    db.resolve_bet([req.body.bet.id])
+        .then(response => {
+            res.status(200).send('This bet has been resolved!')
         })
         .catch(err => {
             res.status(500).send(err)
@@ -194,5 +243,9 @@ module.exports = {
     acceptRequest,
     declineRequest,
     acceptOffer,
-    updatePicture
+    updatePicture,
+    getNumRequests,
+    updateWinner,
+    updateLoser,
+    resolveBet
 }

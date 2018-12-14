@@ -3,7 +3,9 @@ const initState = {
     searchedUser: [],
     selectedUser: {},
     profileUser: {},
-    profileImage: ''
+    profileImage: '',
+    numRequests: null,
+    currentBet: {}
 }
 
 const SAVE_SESSION_USER = "SAVE_SESSION_USER";
@@ -11,7 +13,9 @@ const SAVE_SEARCHED_USER = "SAVE_SEARCHED_USER";
 const SELECTED_USER = "SELECTED_USER";
 const PROFILE_USER = "PROFILE_USER";
 const PROFILE_IMAGE = "PROFILE_IMAGE";
-const LOGOUT = "LOGOUT"
+const LOGOUT = "LOGOUT";
+const NUM_REQUESTS = "NUM_REQUESTS"
+const CURRENT_BET = "CURRENT_BET"
 
 const reducer = (state = initState, action) => {
 
@@ -44,6 +48,16 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 profileImage: action.payload.profileImage
+            }
+        case NUM_REQUESTS:
+            return {
+                ...state,
+                numRequests: action.payload.numRequests
+            }
+        case CURRENT_BET:
+            return {
+                ...state,
+                currentBet: action.payload.currentBet
             }
         default: return state
     }

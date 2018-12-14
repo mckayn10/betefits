@@ -48,3 +48,21 @@ export const updatePicture = (image) => {
         }
     }
 }
+
+export const requestNotif = (number) => {
+    return {
+        type: 'NUM_REQUESTS',
+        payload: {
+            numRequests: number
+        }
+    }
+}
+
+export const updateBet = (bet) => {
+    return {
+        type: 'CURRENT_BET',
+        payload: {
+            currentBet: bet
+        }
+    }
+}
