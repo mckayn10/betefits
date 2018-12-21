@@ -60,6 +60,7 @@ class CurrentBets extends Component {
     }
 
     handleConfirmClick = (winner, loserID) => {
+        console.log(loserID)
 
         axios.post(`/winner/${winner.id}`, { bet: this.props.currentBet })
             .then(response => {
@@ -109,6 +110,8 @@ class CurrentBets extends Component {
             )
         })
 
+        const { creator_id, creator_username, sent_to, sent_to_username } = this.props.currentBet
+
 
         return (
             <div className="bets-container">
@@ -119,6 +122,7 @@ class CurrentBets extends Component {
                         changeToggle={this.handleToggleClick}
                         confirmName={this.state.confirmName}
                         confirmClick={this.handleConfirmClick}
+                        current={true}
 
                     />
                 ) : null}

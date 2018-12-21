@@ -18,7 +18,7 @@ class TotalAmount extends Component {
             <div className="amount-container">
                 <h2>Earnings:</h2>
                 <div style={{
-                    color: this.state.totalEarnings > 0 ? 'green' : 'red'
+                    color: this.state.totalEarnings === 0 ? 'black' : ( this.state.totalEarnings > 0 ? 'green' : 'red')
                 }} >${this.state.totalEarnings}</div>
             </div>
         )

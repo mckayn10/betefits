@@ -14,7 +14,7 @@
     color: white;
 }
 
-input {
+input, textarea {
     margin: 10px;
     padding: 10px 25px 10px 25px;
     background-color: rgb(0, 0, 0);

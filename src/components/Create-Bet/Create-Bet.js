@@ -92,32 +92,36 @@ class CreateBet extends Component {
 
         return (
             <div className="view-container">
-                <div className="create-bet-container">
-                    <h1>Create New Bet</h1>
-                    <div className="category">
-                        <h3>Title</h3>
-                        <input name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                <div className="create-view-container">
+                    <div className="create-bet-container">
+                        <h1>Create New Bet</h1>
+                        <div className="category">
+                            <h5>Title</h5>
+                            <input name="title" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                        </div>
+                        <div className="category">
+                            <h5>I Win If:</h5>
+                            <input name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                        </div>
+                        <div className="category" >
+                            <h5>How Much?</h5>
+                            <input id="create-amount" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                        </div>
+                        <div className="category">
+                            <h5>Ends On:</h5>
+                            <input type="date" name="date"
+                                onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                        </div>
+                        <div className="search-offer-container">
+                            <input className="search-send-container" value={this.state.searchText} placeholder="Search Users" name="searchText"
+                                onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
+                            <button className="add-offer-button" onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
+                            <div>{this.state.successText}</div>
+                        </div>
                     </div>
-                    <div className="category">
-                        <h3>Creator Wins If:</h3>
-                        <input name="details" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
+                    <div className="create-search-container">
+                        <SearchedUser updateSearch={this.updateSearch} sendRequest={this.handleSendRequest} />
                     </div>
-                    <div className="category" >
-                        <h3>How Much?</h3>
-                        <input id="create-amount" name="amount" onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    </div>
-                    <div className="category">
-                        <h3>Ends On:</h3>
-                        <input type="date" name="date"
-                            onChange={(e) => this.handleChange(e.target.name, e.target.value)} />
-                    </div>
-                    <input value={this.state.searchText} placeholder="Search Users" name="searchText"
-                        onChange={(e) => this.handleSearch(e.target.name, e.target.value)} />
-                    <button onClick={this.handleAddOffer.bind(this)}>Add to My Offers</button>
-                    <div>{this.state.successText}</div>
-                </div>
-                <div className="create-search-container">
-                    <SearchedUser updateSearch={this.updateSearch} sendRequest={this.handleSendRequest} />
                 </div>
             </div>
         )

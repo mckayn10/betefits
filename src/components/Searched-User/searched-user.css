@@ -1,10 +1,10 @@
 
 .searched-user-container {
-    width: 100%;
+    width: 70%;
     height: 50vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 25px 25px 25px 0;
 
@@ -17,16 +17,13 @@
 
 .search-card-container {
     width: 100%;
-
     display: flex;
     justify-content: space-between;
-
     margin-right: 20px;
 }
 
 .searched-user {
     width: 95%;
-    height: 250px;
     background-color: rgb(251, 251, 253);
     margin: 25px;
     padding: 10px;

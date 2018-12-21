@@ -7,7 +7,7 @@
 .menu-container, .logout-button {
     display: flex;
     flex-direction: column;
-    text-shadow: -2px 1px 2px black;
+    text-shadow: -2px 1px 2px rgb(46, 46, 46);
 
 }
 
@@ -54,10 +54,11 @@ a {
 .circular-image img{
     display: inline-block;
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
     border-radius: 50%;
+    margin-right: 20px;
 }
 
 
@@ -105,5 +106,9 @@ h2 {
     margin: 5px 2px 5px 5px;
     padding: 1px;
     width: 50px;
+}
+
+.mobile-container {
+    background-color: rgb(46, 46, 46);
 }
 

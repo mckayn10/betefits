@@ -1,7 +1,7 @@
 .profile-pic-container {
     width: 80%;
     height: 80vh;
-    background-color: rgb(122, 45, 45);
+    background-color: rgb(13, 13, 48);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +50,7 @@
 .dropzone {
     height: 10vh;
     width: 100%;
-    border: 3px dashed rgba(0, 0, 0, 0.459);
+    border: 3px dashed rgb(173, 173, 173);
     color: rgba(255, 255, 255, 0.534);
     margin: 20px;
     padding: 10px;

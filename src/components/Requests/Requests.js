@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { requestNotif } from '../../redux/action';
+import { requestNotif, updateBet } from '../../redux/action';
 import BetCard from '../Bet-Card/Bet-Card';
-import './requests.css'
+import './requests.css';
+import Modal from '../Modal/Modal';
 
 class Requests extends Component {
 
     state = {
         currentRequests: [],
-        acceptStatus: ''
+        acceptStatus: '',
+        toggleModal: false,
+        newAmount: '',
+        newBet: ''
     }
 
     componentDidMount = () => {
@@ -72,9 +76,25 @@ class Requests extends Component {
             })
     }
 
+    handleToggleClick = async (request) => {
+
+        await this.props.updateBet(request)
+        this.setState({
+            toggleModal: !this.state.toggleModal,
+        })
+        
+    }
+
+    handleUpdate = (key, value) => {
+        this.setState({
+            [key]: value
+        })
+    }
+
     render() {
 
-
+        console.log(this.state.newAmount)
+        console.log(this.state.newBet)
 
         const currentRequestsList = this.state.currentRequests.map((request, i) => {
             return (
@@ -85,10 +105,16 @@ class Requests extends Component {
                     amount={request.amount}
                     date={new Date(request.bet_ends)}
                     index={i}
+                    creator={request.creator_username}
                     buttons={(
                         <div>
-                            <button index={i} onClick={() => this.handleAccept(request, i)}>Accept</button>
-                            <button index={i} onClick={() => this.handleDecline(request, i)} >Decline</button>
+                            <div>
+                                <button index={i} onClick={() => this.handleAccept(request, i)}>Accept</button>
+                                <button index={i} onClick={() => this.handleDecline(request, i)} >Decline</button>
+                            </div>
+                            <div>
+                                <button onClick={() => this.handleToggleClick(request)}>Counter Bet</button>
+                            </div>
                         </div>
                     )} />
             )
@@ -96,6 +122,13 @@ class Requests extends Component {
 
         return (
             <div className="view-container" id="requests-container">
+            {this.state.toggleModal ? (
+                    <Modal
+                        confirmName={''}
+                        updateState={this.handleUpdate}
+                        changeToggle={this.handleToggleClick}
+                    />
+                ) : null}
                 <h1>My Requests</h1>
                 {currentRequestsList}
             </div>
@@ -105,8 +138,9 @@ class Requests extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        currentBet: state.currentBet
     }
 }
 
-export default connect(mapStateToProps, { requestNotif })(Requests);
+export default connect(mapStateToProps, { requestNotif, updateBet })(Requests);
